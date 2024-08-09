@@ -4,6 +4,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import fs from 'fs';
 import path from 'path';
+import livereload from 'rollup-plugin-livereload';
+import serve from 'rollup-plugin-serve';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -24,6 +26,14 @@ export default {
 				const htmlTemplatePath = path.resolve(__dirname, './public/index.html');
 				return fs.readFileSync(htmlTemplatePath, 'utf8');
 			},
+		}),
+		serve({
+			open: true,
+			contentBase: ['dist'],
+			port: 3000,
+		}),
+		livereload({
+			watch: 'dist',
 		}),
 	],
 };
