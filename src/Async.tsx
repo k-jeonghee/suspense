@@ -1,12 +1,10 @@
 import React from 'react';
-import { fetchData } from './api/fetchData';
-import wrapPromise from './api/wrapPromise';
-
-const resource = wrapPromise(fetchData());
+import { fetchPostData, Post } from './api/fetchPost';
+import { useSuspenseCache } from './hooks/useSuspenseCache';
 
 const Async = () => {
-	const data = resource.read();
-	return <p>{data}</p>;
+	const data: Post = useSuspenseCache(['post'], fetchPostData);
+	return <p>{data.title}</p>;
 };
 
 export default Async;
