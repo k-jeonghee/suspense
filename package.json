@@ -1,4 +1,8 @@
 {
+	"name": "suspense",
+	"version": "1.0.0",
+	"description": "Susepnse 동작 원리 이해와 직접 구현",
+	"main": "dist/bundle.js",
 	"type": "module",
 	"scripts": {
 		"dev": "rollup -c --watch",
